@@ -1,9 +1,16 @@
 # Test case file for Eight Puzzle implementation
 
-# Test invalid setState (wrong number of tiles)
+# Test invalid setStat: Empty state (Error)
+setState 
+
+# Test invalid setState: Non-numeric and out-of-range input (Error)
+setState 1 2 3 a b c d e f
+setState 1 2 3 4 5 6 7 8 9
+
+# Test invalid setState: wrong number of tiles (Error) 
 setState 1 2 3 4 5 6 7 8
 
-# Test invalid setState (duplicate numbers)
+# Test invalid setState: duplicate numbers (Error)
 setState 1 2 3 4 5 6 7 7 0
 
 # Test setState
@@ -16,11 +23,12 @@ move up
 move right
 move down
 
-# Test invalid moves
+# Test invalid moves: Repeated moves in the same direction at the boundary
 move down
 move right
 
 # Test scrambling
+setSeed 20
 scrambleState 10
 printState
 
@@ -54,3 +62,5 @@ printState
 # Test invalid commands
 invalidCommand
 move diagonal
+move straight 
+move DOWN

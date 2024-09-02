@@ -1,31 +1,37 @@
 import random
 class Puzzle: 
+    GOAL_STATE = "0 1 2 3 4 5 6 7 8"
+    INITIAL_STATE = "7 2 4 5 0 6 8 3 1"
+
     def __init__(self):
-        self.goalState = ["0 1 2 3 4 5 6 7 8"]
-        self.curState = ["7 2 4 5 0 6 8 3 1"]
+        self.goalState = self.GOAL_STATE.split()
+        self.curState = self.INITIAL_STATE.split()
     
-    def set_seed(self, seed_value):
+    def setSeed(self, seed_value):
         random.seed(seed_value)
 
     def setState(self, state):
+        state_parts = state.split()
         
-        state_list = list(map(int, state.split()))
-        if len(state_list) != 9:
+        if len(state_parts) != 9 or not all(part.isdigit() and 0 <= int(part) <= 8 for part in state_parts):
             print("Error: invalid puzzle state")
             return
+        
+        state_list = list(map(int, state_parts))
         
         if sorted(state_list) != list(range(9)):
             print("Error: invalid puzzle state")
             return
-    
-
+        
         self.curState = [[0 for _ in range(3)] for _ in range(3)]
 
         index = 0 
         for i in range(3):
             for j in range(3):
-                if state_list[index] == 0: self.curState[i][j] = " "
-                else: self.curState[i][j] = state_list[index]
+                if state_list[index] == 0: 
+                    self.curState[i][j] = " "
+                else: 
+                    self.curState[i][j] = state_list[index]
                 index += 1
 
         print("New state set:")
@@ -119,6 +125,9 @@ def cmd(command_str, puzzle):
         elif command == "scrambleState":
             n = int(parts[1])
             puzzle.scrambleState(n)
+        elif command == "setSeed":
+            seed_value = int(parts[1])
+            puzzle.setSeed(seed_value)
         else:
             print(f"Error: invalid command: {command_str}")
     except IndexError:
@@ -133,7 +142,7 @@ def cmdfile(filename):
                 print(f"Executing command from line {line_num}: {line}")
             cmd(line, puzzle)
 
-def interactive_cmd():
+def cmd_interact():
     puzzle = Puzzle()  
     print("Welcome to the Eight Puzzle. Type 'exit' to quit.")
     
@@ -154,6 +163,6 @@ if __name__ == "__main__":
     if len(sys.argv) > 1:
         cmdfile(sys.argv[1])  
     else:
-        interactive_cmd()  
+        cmd_interact()  
 
 
