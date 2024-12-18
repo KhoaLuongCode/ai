@@ -1,0 +1,262 @@
+Comment from line 1: # Test case file for Eight Puzzle implementation
+Comment from line 3: # Test invalid setStat: Empty state (Error)
+Executing command from line 4: setState
+Error: invalid puzzle state
+Comment from line 6: # Test invalid setState: Non-numeric and out-of-range input (Error)
+Executing command from line 7: setState 1 2 3 a b c d e f
+Error: invalid puzzle state
+Executing command from line 8: setState 1 2 3 4 5 6 7 8 9
+Error: invalid puzzle state
+Comment from line 10: # Test invalid setState: wrong number of tiles (Error)
+Executing command from line 11: setState 1 2 3 4 5 6 7 8
+Error: invalid puzzle state
+Comment from line 13: # Test invalid setState: duplicate numbers (Error)
+Executing command from line 14: setState 1 2 3 4 5 6 7 7 0
+Error: invalid puzzle state
+Comment from line 16: # Test setState
+Executing command from line 17: setState 1 2 3 4 5 6 7 8 0
+New state set:
+1 2 3
+4 5 6
+7 8  
+
+Executing command from line 18: printState
+1 2 3
+4 5 6
+7 8  
+
+Comment from line 20: # Test valid moves
+Executing command from line 21: move left
+Moved left:
+1 2 3
+4 5 6
+7   8
+
+Executing command from line 22: move up
+Moved up:
+1 2 3
+4   6
+7 5 8
+
+Executing command from line 23: move right
+Moved right:
+1 2 3
+4 6  
+7 5 8
+
+Executing command from line 24: move down
+Moved down:
+1 2 3
+4 6 8
+7 5  
+
+Comment from line 26: # Test invalid moves: Repeated moves in the same direction at the boundary
+Executing command from line 27: move down
+Error: invalid command: Move down is not valid on line 27.
+Executing command from line 28: move right
+Error: invalid command: Move right is not valid on line 28.
+Comment from line 30: # Test scrambling
+Executing command from line 31: setSeed 20
+Executing command from line 32: scrambleState 10
+Scramble move: right
+Moved right:
+1   2
+3 4 5
+6 7 8
+
+Scramble move: right
+Moved right:
+1 2  
+3 4 5
+6 7 8
+
+Scramble move: left
+Moved left:
+1   2
+3 4 5
+6 7 8
+
+Scramble move: right
+Moved right:
+1 2  
+3 4 5
+6 7 8
+
+Scramble move: left
+Moved left:
+1   2
+3 4 5
+6 7 8
+
+Scramble move: left
+Moved left:
+  1 2
+3 4 5
+6 7 8
+
+Scramble move: down
+Moved down:
+3 1 2
+  4 5
+6 7 8
+
+Scramble move: up
+Moved up:
+  1 2
+3 4 5
+6 7 8
+
+Scramble move: right
+Moved right:
+1   2
+3 4 5
+6 7 8
+
+Scramble move: left
+Moved left:
+  1 2
+3 4 5
+6 7 8
+
+Executing command from line 33: printState
+  1 2
+3 4 5
+6 7 8
+
+Comment from line 35: # Test setting a new state and moving
+Executing command from line 36: setState 1 2 3 4 0 5 6 7 8
+New state set:
+1 2 3
+4   5
+6 7 8
+
+Executing command from line 37: printState
+1 2 3
+4   5
+6 7 8
+
+Executing command from line 38: move right
+Moved right:
+1 2 3
+4 5  
+6 7 8
+
+Executing command from line 39: move down
+Moved down:
+1 2 3
+4 5 8
+6 7  
+
+Executing command from line 40: move left
+Moved left:
+1 2 3
+4 5 8
+6   7
+
+Executing command from line 41: move up
+Moved up:
+1 2 3
+4   8
+6 5 7
+
+Comment from line 43: # Test edge cases
+Executing command from line 44: setState 0 1 2 3 4 5 6 7 8
+New state set:
+  1 2
+3 4 5
+6 7 8
+
+Executing command from line 45: move left
+Error: invalid command: Move left is not valid on line 45.
+Executing command from line 46: move up
+Error: invalid command: Move up is not valid on line 46.
+Executing command from line 48: setState 1 2 0 3 4 5 6 7 8
+New state set:
+1 2  
+3 4 5
+6 7 8
+
+Executing command from line 49: move right
+Error: invalid command: Move right is not valid on line 49.
+Executing command from line 50: move up
+Error: invalid command: Move up is not valid on line 50.
+Executing command from line 52: setState 6 7 8 3 4 5 0 1 2
+New state set:
+6 7 8
+3 4 5
+  1 2
+
+Executing command from line 53: move down
+Error: invalid command: Move down is not valid on line 53.
+Executing command from line 54: move left
+Error: invalid command: Move left is not valid on line 54.
+Comment from line 56: # Test multiple scrambles
+Executing command from line 57: scrambleState 5
+Scramble move: right
+Moved right:
+1   2
+3 4 5
+6 7 8
+
+Scramble move: right
+Moved right:
+1 2  
+3 4 5
+6 7 8
+
+Scramble move: down
+Moved down:
+1 2 5
+3 4  
+6 7 8
+
+Scramble move: down
+Moved down:
+1 2 5
+3 4 8
+6 7  
+
+Scramble move: up
+Moved up:
+1 2 5
+3 4  
+6 7 8
+
+Executing command from line 58: printState
+1 2 5
+3 4  
+6 7 8
+
+Executing command from line 59: scrambleState 3
+Scramble move: down
+Moved down:
+3 1 2
+  4 5
+6 7 8
+
+Scramble move: right
+Moved right:
+3 1 2
+4   5
+6 7 8
+
+Scramble move: right
+Moved right:
+3 1 2
+4 5  
+6 7 8
+
+Executing command from line 60: printState
+3 1 2
+4 5  
+6 7 8
+
+Comment from line 62: # Test invalid commands
+Executing command from line 63: invalidCommand
+Error: invalid command: invalidCommand on line 63
+Executing command from line 64: move diagonal
+Error: invalid command: Move diagonal is not valid on line 64.
+Executing command from line 65: move straight
+Error: invalid command: Move straight is not valid on line 65.
+Executing command from line 66: move DOWN
+Error: invalid command: Move DOWN is not valid on line 66.

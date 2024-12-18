@@ -1,0 +1,198 @@
+# Testing heuristic functions and A* search
+# Set a known state to test heuristics
+setState 2 8 3 1 4 5 6 7 0
+New state set:
+2 8 3
+1 4 5
+6 7  
+heuristic h1
+Misplaced tiles: 4
+# Output should indicate h1 value is 4
+heuristic h2
+Total Manhattan distance: 10
+# Output should indicate h2 value is 10
+# Scramble the puzzle to increase complexity
+setSeed 10
+scrambleState 15
+Scramble move: right
+Moved right:
+1   2
+3 4 5
+6 7 8
+Scramble move: right
+Moved right:
+1 2  
+3 4 5
+6 7 8
+Scramble move: down
+Moved down:
+1 2 5
+3 4  
+6 7 8
+Scramble move: down
+Moved down:
+1 2 5
+3 4 8
+6 7  
+Scramble move: left
+Moved left:
+1 2 5
+3 4 8
+6   7
+Scramble move: left
+Moved left:
+1 2 5
+3 4 8
+  6 7
+Scramble move: up
+Moved up:
+1 2 5
+  4 8
+3 6 7
+Scramble move: up
+Moved up:
+  2 5
+1 4 8
+3 6 7
+Scramble move: down
+Moved down:
+1 2 5
+  4 8
+3 6 7
+Scramble move: down
+Moved down:
+1 2 5
+3 4 8
+  6 7
+Scramble move: right
+Moved right:
+1 2 5
+3 4 8
+6   7
+Scramble move: left
+Moved left:
+1 2 5
+3 4 8
+  6 7
+Scramble move: up
+Moved up:
+1 2 5
+  4 8
+3 6 7
+Scramble move: up
+Moved up:
+  2 5
+1 4 8
+3 6 7
+Scramble move: right
+Moved right:
+2   5
+1 4 8
+3 6 7
+# Now the puzzle is scrambled
+# Solve the puzzle using A* with h1 heuristic
+solve A* h1 maxnodes=1000
+Goal reached with path: ['left', 'down', 'down', 'right', 'right', 'up', 'up', 'left', 'left']
+Nodes created during search: 22
+Solution length: 9
+Move sequence:
+move left
+move down
+move down
+move right
+move right
+move up
+move up
+move left
+move left
+# Solve the puzzle using A* with h2 heuristic
+solve A* h2 maxnodes=1000
+Goal reached with path: ['left', 'down', 'down', 'right', 'right', 'up', 'up', 'left', 'left']
+Nodes created during search: 16
+Solution length: 9
+Move sequence:
+move left
+move down
+move down
+move right
+move right
+move up
+move up
+move left
+move left
+# Testing BFS with maxnodes limit
+# Should output an error due to node limit reached
+solve A* h1 maxnodes=5
+Error: maxnodes limit (5) reached
+# Super hard state
+setState 8 7 6 5 4 3 2 1 0
+New state set:
+8 7 6
+5 4 3
+2 1  
+solve A* h1 maxnodes=900000
+Goal reached with path: ['up', 'up', 'left', 'left', 'down', 'down', 'right', 'right', 'up', 'up', 'left', 'left', 'down', 'down', 'right', 'right', 'up', 'up', 'left', 'left', 'down', 'down', 'right', 'right', 'up', 'up', 'left', 'left']
+Nodes created during search: 89649
+Solution length: 28
+Move sequence:
+move up
+move up
+move left
+move left
+move down
+move down
+move right
+move right
+move up
+move up
+move left
+move left
+move down
+move down
+move right
+move right
+move up
+move up
+move left
+move left
+move down
+move down
+move right
+move right
+move up
+move up
+move left
+move left
+solve A* h2 maxnodes=50000
+Goal reached with path: ['up', 'up', 'left', 'left', 'down', 'down', 'right', 'right', 'up', 'up', 'left', 'left', 'down', 'down', 'right', 'right', 'up', 'up', 'left', 'left', 'down', 'down', 'right', 'right', 'up', 'up', 'left', 'left']
+Nodes created during search: 1081
+Solution length: 28
+Move sequence:
+move up
+move up
+move left
+move left
+move down
+move down
+move right
+move right
+move up
+move up
+move left
+move left
+move down
+move down
+move right
+move right
+move up
+move up
+move left
+move left
+move down
+move down
+move right
+move right
+move up
+move up
+move left
+move left

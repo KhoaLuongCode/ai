@@ -1,0 +1,11 @@
+# Test Effective Branching Factor
+efc d=1 n=3
+efc d=2 n=6
+efc d=2 n=12
+efc d=3 n=14
+efc d=3 n=84
+efc d=4 n=4
+efc d=3 n=5  # Invalid test case
+
+setSeed 10
+generateTable 20 25 30 60

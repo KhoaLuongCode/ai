@@ -1,0 +1,30 @@
+# Testing heuristic functions and A* search
+
+# Set a known state to test heuristics
+setState 2 8 3 1 4 5 6 7 0
+
+heuristic h1
+# Output should indicate h1 value is 4
+
+heuristic h2
+# Output should indicate h2 value is 10
+
+# Scramble the puzzle to increase complexity
+setSeed 10
+scrambleState 15
+# Now the puzzle is scrambled
+
+# Solve the puzzle using A* with h1 heuristic
+solve A* h1 maxnodes=1000
+
+# Solve the puzzle using A* with h2 heuristic
+solve A* h2 maxnodes=1000
+
+# Testing BFS with maxnodes limit
+# Should output an error due to node limit reached
+solve A* h1 maxnodes=5
+
+# Super hard state
+setState 8 7 6 5 4 3 2 1 0
+solve A* h1 maxnodes=900000
+solve A* h2 maxnodes=50000

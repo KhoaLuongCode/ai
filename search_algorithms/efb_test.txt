@@ -1,0 +1,4 @@
+efc d=2 n=13
+efc d=3 n=85
+efc d=0 n=1
+efc d=1 n=6
